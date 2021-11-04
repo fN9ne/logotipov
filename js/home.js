@@ -11,4 +11,32 @@ $(document).ready(function() {
 	$('.welcome__slider').slick({
 		dots: true,
 	});
+	for (let i = 0; i < $('.popular-slide__color').length; i++) {
+		let el = $('.popular-slide__color').eq(i);
+		let bg = el.attr('data-bg');
+		let color = el.attr('data-color');
+		el.css({
+			'background-color': bg,
+			'color': color,
+		});
+	}
+	$('.popular__slider').slick({
+		slidesToShow: 3,
+		autoplay: true,
+		autoplaySpeed: 3500,
+		responsive: [
+			{
+				breakpoint: 992,
+				settings: {
+					slidesToShow: 2,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 1,
+				},
+			}
+		],
+	});
 });

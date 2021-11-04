@@ -191,30 +191,24 @@ $(document).ready(function(){
 			$('.header').removeClass('_bg');
 		}
 	})
-
 	$('.menu-button').on('click', function() {
 		$('.header').toggleClass('_active');
 		$('body').toggleClass('_lock');
 	});
-
 	let selectId = 0;
-
 	for (let i = $('.select').length; i > 0; i--) {
 		$('.select').eq(selectId).css('z-index', i);
 		selectId++;
 	}
-
 	for (let i = 0; i < $('.burger-menu-category').length; i++) {
 		let item = $('.burger-menu-category').eq(i);
 		if (item.find('.burger-menu-category__list').length > 0) {
 			item.addClass('_dropdown');
 		}
 	}
-
 	$('.burger-menu').on('click', function(e) {
 		if (!e.target.closest('.burger-menu__content')) $('.header').removeClass('_active');
 	});
-
 	$(window).on('load resize', function() {
 		if ($(window).outerWidth() <= 600) {
 			let val = $(window).outerHeight() - $('.header').outerHeight();
