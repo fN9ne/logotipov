@@ -184,6 +184,16 @@ $('.select__item').on('click', function() {
 });;
 
 $(document).ready(function(){
+	const page = $('.wrapper');
+	const header = $('.header');
+	if ($('.welcome').length == 0) {
+		$(window).on('load resize', pagePadding);
+		$('.header').addClass('_black');
+	}
+	function pagePadding() {
+		let paddingSize = header.outerHeight();
+		page.css('padding-top', paddingSize);
+	}
 	$(window).on('scroll', function() {
 		if ($(window).scrollTop() > 50) {
 			$('.header').addClass('_bg');
@@ -222,5 +232,43 @@ $(document).ready(function(){
 			$('.burger-menu-category__head').unbind('click');
 			$('.burger-menu-category').removeClass('_active');
 		}
+	});
+	if ($('.popular-slide__color').length > 0) {
+		for (let i = 0; i < $('.popular-slide__color').length; i++) {
+			let el = $('.popular-slide__color').eq(i);
+			let bg = el.attr('data-bg');
+			let color = el.attr('data-color');
+			el.css({
+				'background-color': bg,
+				'color': color,
+			});
+		}
+		$('.popular-slide__color').on('click', function() {
+			if (!$(this).hasClass('_active')) {
+				$('.popular-slide__color').removeClass('_active');
+				$(this).addClass('_active');
+			} else {
+				$(this).removeClass('_active');
+			}
+		});
+	}
+	if ($('.catalog-sort__type').length > 0) {
+		$('.catalog-sort__type').on('click', function() {
+			$('.catalog-sort__type').removeClass('_active');
+			$(this).addClass('_active');
+		});
+	}
+	$('.catalog-sort__sort').on('click', function() {
+		$('.catalog-sort__types').toggleClass('_active');
+	});
+	$('.catalog-sort__color').on('click', function() {
+		$('.catalog-sort__colors').toggleClass('_active');
+	});
+	$(document).on('click', function(e) {
+		if (!e.target.closest('.catalog-sort__types') && !e.target.closest('.catalog-sort__sort')) $('.catalog-sort__types').removeClass('_active');
+		if (!e.target.closest('.catalog-sort__colors') && !e.target.closest('.catalog-sort__color')) $('.catalog-sort__colors').removeClass('_active');
+	});
+	$('.popup-order__close').on('click', function() {
+		$(this).closest('.popup').removeClass('_active');
 	});
 });
